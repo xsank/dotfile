@@ -3,7 +3,7 @@ filetype off                    " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
+" let Vundle manage Bundle
 Bundle 'gmarik/vundle'
 Bundle 'fatih/vim-go'
 Bundle 'scrooloose/nerdtree'
@@ -15,19 +15,15 @@ Bundle 'bradfitz/goimports'
 Bundle 'vim-jp/vim-go-extra'
 
 
-filetype plugin indent on
-"au FileType go au BufWritePre <buffer> Fmt
-"autocmd FileType go autocmd BufWritePre <buffer> Fmt
-autocmd BufWritePre *.go Fmt
-
 "base setting
 set ts=4
 set expandtab
 set shiftwidth=4
 set nu
+filetype plugin indent on
 
-"tags
-"go tags
+
+"go format
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -35,8 +31,15 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 
-let g:godef_split = 3
+"au FileType go au BufWritePre <buffer> Fmt
+"autocmd FileType go autocmd BufWritePre <buffer> Fmt
+autocmd BufWritePre *.go Fmt
 
+"go def
+"let g:go_def_mapping_enabled = 0
+"let g:godef_split = 2
+
+"go tagbar
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
@@ -65,8 +68,11 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
     \ }
 
-"key map
+
+"short key map
 nmap <F1> :NERDTreeToggle <CR>
 nmap <F5> :GoRun <CR>
 nmap <F2> :TagbarToggle <CR>
-nmap <F3> :GoDef <CR>
+au Filetype go nnoremap <F3> :vsp <CR>:exe "GoDef" <CR>
+"au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+"au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
