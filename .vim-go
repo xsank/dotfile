@@ -1,0 +1,72 @@
+set nocompatible                " be iMproved
+filetype off                    " required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+Bundle 'fatih/vim-go'
+Bundle 'scrooloose/nerdtree'
+Bundle 'jstemmer/gotags'
+Bundle 'majutsushi/tagbar'
+Bundle 'nsf/gocode'
+Bundle 'dgryski/vim-godef'
+Bundle 'bradfitz/goimports'
+Bundle 'vim-jp/vim-go-extra'
+
+
+filetype plugin indent on
+"au FileType go au BufWritePre <buffer> Fmt
+"autocmd FileType go autocmd BufWritePre <buffer> Fmt
+autocmd BufWritePre *.go Fmt
+
+"base setting
+set ts=4
+set expandtab
+set shiftwidth=4
+set nu
+
+"tags
+"go tags
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+
+let g:godef_split = 3
+
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+    \ }
+
+"key map
+nmap <F1> :NERDTreeToggle <CR>
+nmap <F5> :GoRun <CR>
+nmap <F2> :TagbarToggle <CR>
+nmap <F3> :GoDef <CR>
