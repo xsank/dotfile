@@ -71,8 +71,9 @@ let g:tagbar_type_go = {
 
 "short key map
 nmap <F1> :NERDTreeToggle <CR>
-nmap <F5> :GoRun <CR>
 nmap <F2> :TagbarToggle <CR>
 au Filetype go nnoremap <F3> :vsp <CR>:exe "GoDef" <CR>
+nmap <F4> :GoReferrers <CR>
+nmap <F5> :GoRun <CR>
 "au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 "au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
