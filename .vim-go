@@ -29,7 +29,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
+"let g:go_fmt_command = "goimports"
 
 "au FileType go au BufWritePre <buffer> Fmt
 "autocmd FileType go autocmd BufWritePre <buffer> Fmt
@@ -74,6 +74,7 @@ nmap <F1> :NERDTreeToggle <CR>
 nmap <F2> :TagbarToggle <CR>
 au Filetype go nnoremap <F3> :vsp <CR>:exe "GoDef" <CR>
 nmap <F4> :GoReferrers <CR>
-nmap <F5> :GoRun <CR>
+nmap <F5> :! go run % <CR>
+nmap <F6> :! go build %<CR>
 "au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 "au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
